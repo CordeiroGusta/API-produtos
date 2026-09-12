@@ -1,5 +1,5 @@
-from fastapi.testclient import TestClient #bibioteca de testes automatizados para essa API
-from app.main import app #Importando a instância do FastAPI
+from fastapi.testclient import TestClient
+from app.main import app
 
 def teste_test(client):
     response = client.get("/")

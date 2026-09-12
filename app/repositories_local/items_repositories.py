@@ -3,10 +3,9 @@ from app.schemas.items_schemas import ItemRequest, ItemUpdate
 _items: list[dict] = []
 _next_id = 1
 
-def list_itens_all() -> list[dict]:
+def list_items_all() -> list[dict]:
     return _items
 
-#Lista o item pelo seu id
 def list_item_id(item_id: int) -> dict | None:
     for item in _items:
         if item['id'] == item_id:
@@ -30,11 +29,11 @@ def create_item(data: ItemRequest) -> bool:
 
     return True
 
-def update_item(item_id: int, updated_item: ItemUpdate) -> bool | None:
+def update_item(item_id: int, updated_data: ItemUpdate) -> bool | None:
     for index, item in enumerate(_items):
         if item['id'] == item_id: 
-            updated_item = updated_item.model_dump(exclude_unset=True)
-            item.update(updated_item)
+            updated_data = updated_data.model_dump(exclude_unset=True)
+            item.update(updated_data)
             return True 
     return None
 
