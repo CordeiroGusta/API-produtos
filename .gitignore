@@ -1,0 +1,21 @@
+#Ignorando variaveis de ambiente
+.env
+.env.local
+*.env
+
+#configurações do vscode
+.vscode
+*.vscode
+
+#arquivos de cache do python
+*.pyc
+.pyc
+
+#git
+.git
+
+#ambiente virtual python
+.venv
+
+#cache python
+__pycache__
