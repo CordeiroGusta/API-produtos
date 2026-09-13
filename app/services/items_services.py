@@ -55,10 +55,7 @@ def list_items_service():
 
 def list_items_id_service(id_item: int):
     item = list_item_id(id_item)
-    if item == True:
-        return item
-
-    return None
+    return item
 
 def delete_item_service(id_item: int):
     item = delete_item(id_item)
