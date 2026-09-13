@@ -1,5 +1,5 @@
 from app.schemas.items_schemas import ItemRequest, ItemUpdate
-from app.repositories_local.items_repositories import create_item, update_item
+from app.repositories_local.items_repositories import create_item, update_item, list_items_all, list_item_id, delete_item
 
 def create_item_service(data: ItemRequest):
     if data.quantity <= 0 or data.value <= 0:
@@ -49,3 +49,20 @@ def update_item_service(item_id: int, data: ItemUpdate):
             return None
 
     return update_item(item_id, data)
+
+def list_items_service():
+    return list_items_all()
+
+def list_items_id_service(id_item: int):
+    item = list_item_id(id_item)
+    if item == True:
+        return item
+
+    return None
+
+def delete_item_service(id_item: int):
+    item = delete_item(id_item)
+    if item == True:
+        return True
+
+    return None

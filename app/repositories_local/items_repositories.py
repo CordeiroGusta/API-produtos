@@ -9,8 +9,8 @@ def list_items_all() -> list[dict]:
 def list_item_id(item_id: int) -> dict | None:
     for item in _items:
         if item['id'] == item_id:
-            return item 
-    
+            return item
+
     return None
 
 def create_item(data: ItemRequest) -> bool:
@@ -27,14 +27,15 @@ def create_item(data: ItemRequest) -> bool:
     _items.append(item)
     _next_id += 1
 
-    return True
+    return item['id']
 
-def update_item(item_id: int, updated_data: ItemUpdate) -> bool | None:
-    for index, item in enumerate(_items):
+def update_item(item_id: int, updated_fields: ItemUpdate) -> dict | None:
+    for item in _items:
         if item['id'] == item_id: 
-            updated_data = updated_data.model_dump(exclude_unset=True)
-            item.update(updated_data)
-            return True 
+            updated_fields = updated_fields.model_dump(exclude_unset=True)
+            item.update(updated_fields)
+            return item 
+        
     return None
 
 def delete_item(item_id: int) -> bool | None:
@@ -42,4 +43,5 @@ def delete_item(item_id: int) -> bool | None:
         if item['id'] == item_id:
             del _items[index]
             return True
+        
     return None 

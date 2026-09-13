@@ -21,3 +21,14 @@ class ItemUpdate(BaseModel):
     family: str | None = None
     value: float | None = None
     quantity: int | None = None
+
+class ItemCreatedResponse(BaseModel):
+    message: str
+    item_id: int
+
+class ItemUpdatedResponse(BaseModel):
+    message: str
+    item: ItemResponse
+
+class MessageResponse(BaseModel):
+    message: str
