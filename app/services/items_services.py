@@ -11,14 +11,20 @@ def create_item_service(data: ItemRequest):
     if len(data.name.strip()) < 3:
         return None
 
+    if len(data.name.strip()) > 30:
+            return None
+
     if data.description is not None:
         description = data.description.strip()
 
-        if len(description) > 25:
+        if len(description) > 60:
             return None
     
     if data.family is None or data.family.strip() == "":
         return None
+
+    if len(data.family.strip()) > 20:
+        return None 
 
     return create_item(data)
 
@@ -38,15 +44,21 @@ def update_item_service(item_id: int, data: ItemUpdate):
         if len(data.name.strip()) < 3:
             return None
 
+        if len(data.name.strip()) > 30:
+            return None
+
     if data.description is not None:
         description = data.description.strip()
 
-        if len(description) > 25:
+        if len(description) > 60:
             return None
 
     if data.family is not None:
         if data.family.strip() == "":
             return None
+
+        if len(data.family.strip()) > 20:
+            return None 
 
     return update_item(item_id, data)
 
