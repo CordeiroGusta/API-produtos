@@ -1,11 +1,12 @@
 def valid_item_payload():
     return {
-        "name": "Redragon - K686",
-        "description": "Teclado Gamer",
-        "family": "Periféricos",
+        "name": "Teclado Redragon - K686",
+        "description": "Teclado gamer mecanico RGB, 96%, brown switches",
+        "family": "Perifericos",
         "value": 289.99,
         "quantity": 55
     }
+
 
 
 def invalid_quantity():
@@ -38,7 +39,7 @@ def empty_name():
 
     return payload
 
-def shorert_name():
+def shorter_name():
     payload = valid_item_payload()
     payload['name'] = 'AB'
 
@@ -65,3 +66,5 @@ def empty_family():
 def greater_family_name():
     payload = valid_item_payload()
     payload['family'] = 'a' * 21
+
+    return payload
