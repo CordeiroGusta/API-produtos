@@ -221,8 +221,6 @@ Qualquer pessoa que tenha acesso ao repositório pode:
 4. Importá-la no próprio Postman;
 5. Executar as requisições e testar os endpoints.
 
-Não é necessário fazer parte do meu workspace do Postman. A coleção é disponibilizada como um arquivo independente.
-
 ### 📂 Coleção
 
 A coleção está disponível no projeto em:
