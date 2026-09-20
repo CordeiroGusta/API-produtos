@@ -1,0 +1,189 @@
+{
+  "info": {
+    "_postman_id": "9d696f19-38d0-4f5a-8e70-f4c0a5461b9e",
+    "name": "API Produtos",
+    "description": "Esta coleção cobre o ciclo de vida completo do gerenciamento de produtos por meio de uma API RESTful. Ela inclui as seguintes requisições:\n\n- **API Status** – Verifica se a API está funcionando corretamente.\n- **Create Item** – Adiciona um novo produto ao catálogo.\n- **Get Items** – Retorna a lista completa de produtos disponíveis.\n- **Get Item ID** – Busca os detalhes de um produto específico pelo seu ID.\n- **Update Item** – Atualiza os dados de um produto existente.\n- **Delete Item** – Remove um produto do catálogo.\n\nUse esta coleção para testar, validar e explorar todos os endpoints principais de produtos, desde verificações de saúde até operações completas de CRUD.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58370010",
+    "_collection_link": "https://go.postman.co/collection/58370010-9d696f19-38d0-4f5a-8e70-f4c0a5461b9e?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "API Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Item",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Teclado Redragon - K686\",\r\n    \"description\": \"Teclado gamer mecanico RGB, 96%, brown switches\",\r\n    \"family\": \"Perifericos\",\r\n    \"value\": 289.99,\r\n    \"quantity\": 55\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/items/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "items",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Items",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/items/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "items",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Item ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/items/1",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "items",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Item",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Teclado Redragon - K686\",\r\n    \"description\": \"Teclado gamer mecanico RGB, 60%, blue switch tatil\",\r\n    \"family\": \"Perifericos\",\r\n    \"value\": 289.99,\r\n    \"quantity\": 20\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/items/1",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "items",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Item",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/items/1",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "items",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
