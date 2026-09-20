@@ -3,8 +3,8 @@
 > **API REST desenvolvida em Python com FastAPI, criada como projeto de estudos para consolidar conceitos de Backend, arquitetura em camadas, validação de dados, regras de negócio, persistência e testes automatizados.**
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white">
-  <img src="https://img.shields.io/badge/FastAPI-0.1xx-009688?style=for-the-badge&logo=fastapi&logoColor=white">
+  <img src="https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white">
+  <img src="https://img.shields.io/badge/FastAPI-0.141.1-009688?style=for-the-badge&logo=fastapi&logoColor=white">
   <img src="https://img.shields.io/badge/Pydantic-Validation-E92063?style=for-the-badge&logo=pydantic&logoColor=white">
   <img src="https://img.shields.io/badge/Pytest-Tests-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white">
   <img src="https://img.shields.io/badge/Postman-API%20Testing-FF6C37?style=for-the-badge&logo=postman&logoColor=white">
@@ -41,12 +41,12 @@ Durante o desenvolvimento, os principais objetivos foram:
 - Aprender a separar responsabilidades entre Router, Service e Repository;
 - Utilizar **Pydantic** para validação e serialização;
 - Implementar regras de negócio;
-- Trabalhar com códigos de status HTTP;
+
 - Criar respostas padronizadas para os endpoints;
 - Desenvolver testes automatizados;
-- Utilizar mocks para isolar camadas durante os testes;
-- Realizar testes funcionais através do Postman;
-- Aprender a disponibilizar uma API de maneira reproduzível para outros usuários.
+
+
+
 
 ---
 
@@ -85,7 +85,7 @@ A aplicação foi estruturada seguindo uma divisão de responsabilidades entre d
                          └────────┬─────────┘
                                   │
                                   ▼
-                              DADOS
+                                DADOS
 ```
 
 ### 🔄 Fluxo de uma requisição
@@ -146,7 +146,7 @@ Essa separação foi uma das partes mais importantes do aprendizado do projeto, 
 ## 1. Clone o repositório
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/CordeiroGusta/API-produtos.git
 ```
 
 ## 2. Acesse a pasta do projeto
@@ -280,6 +280,10 @@ O cliente envia os dados do novo item no corpo da requisição, que passa pela v
   <img src="docs/images/post-create.png" width="850">
 </p>
 
+<p align="center">
+  <img src="docs/images/post-create.-2png" width="850">
+</p>
+
 ---
 
 ## 🔎 Consultando os itens — GET
@@ -370,8 +374,7 @@ Entre os cenários testados estão:
 - Strings compostas apenas por espaços;
 - Limites de tamanho;
 - Recursos inexistentes;
-- Atualizações parciais;
-- Operações de criação, consulta, atualização e exclusão;
+- Operações CRUD;
 - Comportamentos esperados das diferentes camadas.
 
 Nos testes relacionados aos Services, também foram utilizados **mocks** para permitir o isolamento da camada de negócio em relação aos Repositories.
@@ -494,33 +497,4 @@ Essa mudança de perspectiva foi um dos principais resultados do projeto.
 
 A construção da API também permitiu consolidar uma visão mais ampla sobre **Backend**, servindo como base para estudos posteriores relacionados a bancos de dados, Docker, autenticação, segurança, integração entre serviços e outras tecnologias do ecossistema.
 
----
 
-# 🔮 Próximos passos
-
-Este projeto foi desenvolvido como uma base de estudos e pode evoluir futuramente para uma arquitetura ainda mais próxima de aplicações reais.
-
-Alguns possíveis próximos passos incluem:
-
-- 🐳 Containerização da aplicação com Docker;
-- 🗄️ Integração com PostgreSQL;
-- 🔐 Implementação de autenticação e autorização;
-- 🛡️ Estudo e implementação de mecanismos de segurança;
-- ⚡ Middlewares e tratamento global de exceções;
-- 📊 Melhorias na persistência dos dados;
-- 🚀 Deploy da aplicação;
-- 🔄 Integrações com APIs externas.
-
----
-
-# 👨‍💻 Sobre o projeto
-
-O **API-produtos** representa um projeto de estudos focado principalmente na consolidação de fundamentos de **Backend e desenvolvimento de APIs REST**.
-
-Através dele, foi possível colocar em prática conceitos que vão desde HTTP e validação de dados até arquitetura em camadas e testes automatizados, desenvolvendo não apenas uma API funcional, mas uma compreensão mais ampla sobre **como aplicações Backend são estruturadas e como seus diferentes componentes trabalham em conjunto**.
-
----
-
-<p align="center">
-  Desenvolvido para estudos de Backend com Python, FastAPI e APIs REST.
-</p>
