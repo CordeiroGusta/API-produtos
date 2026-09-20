@@ -281,7 +281,7 @@ O cliente envia os dados do novo item no corpo da requisição, que passa pela v
 </p>
 
 <p align="center">
-  <img src="docs/images/post-create.-2png" width="850">
+  <img src="docs/images/post-create-2.png" width="850">
 </p>
 
 ---
