@@ -117,7 +117,7 @@ volumes:
 ```bash
 git clone https://github.com/CordeiroGusta/API-produtos.git
 cd API-produtos
-git checkout <nome-desta-branch>
+git checkout sandbox/database
 ```
 
 ## 2. Configure as variáveis de ambiente
