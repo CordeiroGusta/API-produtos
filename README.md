@@ -155,7 +155,7 @@ python -m venv .venv
 ```
 ### 🐧 Linux / 🍎 macOS
 ```bash
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 ```
 
@@ -184,7 +184,7 @@ Crie um arquivo `.env` na raiz do projeto baseado no `.env.example`. Exemplo de 
 ```env
 DB_HOST=localhost
 DB_PORT=3306
-DB_NAME=products
+DB_NAME=db_products
 DB_USER=seu_usuario_mysql
 DB_PASSWORD=sua_senha_mysql
 DB_DRIVER=mysql+pymysql
