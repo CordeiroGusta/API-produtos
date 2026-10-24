@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import String, Float, Integer, Text
+from sqlalchemy import String, Float, Integer
 from app.database.db_connection import Base
 
 class ItemModel(Base):
@@ -13,6 +13,6 @@ class ItemModel(Base):
 
     family: Mapped[str] = mapped_column(String(20), nullable=False, unique=False)
 
-    price: Mapped[float] = mapped_column(Float, nullable=False)
+    value: Mapped[float] = mapped_column(Float, nullable=False)
 
     quantity: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
