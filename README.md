@@ -1,4 +1,4 @@
-# 🚀 API-produtos *(Branch: feat/database)*
+# 🚀 API-produtos *(Branch: hotfix-0.0.1)*
 
 > **API REST desenvolvida em Python com FastAPI, criada como projeto de estudos para consolidar conceitos de Backend, arquitetura em camadas, validação de dados, regras de negócio e persistência relacional com SQLAlchemy e MySQL.**
 
@@ -27,6 +27,90 @@ A aplicação utiliza uma arquitetura dividida em responsabilidades, separando:
 - 📋 **Schemas** — responsáveis pela estrutura, validação e serialização dos dados com Pydantic;
 - ⚙️ **Services** — responsáveis pelas regras de negócio;
 - 💾 **Repositories** — responsáveis pela persistência e comunicação com o banco relacional via ORM.
+
+---
+
+# 🛠️ Hotfix 0.0.1
+
+Esta hotfix tem como objetivo **alinhar o modelo de dados e os contratos existentes à regra de negócio do projeto**, antes da implementação do repositório relacional com SQLAlchemy.
+
+> **Branch:** `hotfix-0.0.1`  
+> **Branch base:** `feat/database`  
+> **Status:** Em desenvolvimento
+
+## 🎯 Objetivo
+
+Corrigir inconsistências identificadas entre a regra de negócio, o modelo de dados e os contratos de resposta/repositório. Estas correções preparam o projeto para a próxima etapa: a implementação do repositório de itens com SQLAlchemy e MySQL.
+
+## 🐞 Bugs contemplados
+
+### Bug 001 — Nome do produto tratado como valor único
+
+**Problema**
+
+O modelo de dados atual define o campo `name` como único. Isso impede que dois produtos diferentes sejam cadastrados com o mesmo nome.
+
+**Impacto**
+
+A regra de negócio permite que produtos distintos compartilhem o mesmo nome, desde que possuam especificações, descrições ou outras características diferentes. Com a restrição atual, o cadastro do segundo produto com nome repetido seria recusado pelo banco de dados.
+
+Além disso, quando o repositório relacional estiver em uso, uma violação dessa restrição poderá gerar uma exceção de integridade. Sem tratamento adequado, esse erro pode se propagar como uma falha interna na API.
+
+**Correção**
+
+Remover a restrição de unicidade do campo `name`, permitindo o cadastro de produtos com nomes repetidos. O identificador único de cada produto continuará sendo o campo `id`.
+
+---
+
+### Bug 002 — Descrição opcional não refletida no contrato de resposta
+
+**Problema**
+
+O modelo de dados permite que o campo `description` seja nulo, indicando que a descrição do produto é opcional. Porém, o schema de resposta declara esse campo como obrigatório.
+
+**Impacto**
+
+Existe uma inconsistência entre o que o banco de dados aceita e o que a API promete retornar. Um produto cadastrado sem descrição pode gerar inconsistência ou falha durante a serialização da resposta.
+
+**Correção**
+
+Ajustar o schema de resposta para refletir que a descrição é opcional, permitindo que o campo `description` seja retornado como nulo quando não informado.
+
+---
+
+### Bug 003 — Contrato de retorno incorreto no repositório local
+
+**Problema**
+
+A função responsável por criar um item no repositório local declara um tipo de retorno incompatível com o valor que realmente retorna. Embora o comportamento em execução esteja correto, a assinatura não representa fielmente o contrato da função.
+
+**Impacto**
+
+A anotação incorreta prejudica a legibilidade, a manutenção e a confiabilidade do código. Outras pessoas — ou ferramentas de análise estática — podem interpretar erroneamente o tipo de dado retornado pela criação de um item.
+
+**Correção**
+
+Corrigir a anotação de retorno da função de criação para representar o valor realmente devolvido: o identificador do item criado.
+
+## 🚫 Fora do escopo
+
+Esta hotfix **não** contempla:
+
+- Implementação do repositório relacional com SQLAlchemy;
+- Migração das operações de CRUD para o MySQL;
+- Alteração das regras de negócio existentes;
+- Alteração dos endpoints ou das respostas HTTP;
+- Implementação de migrations;
+- Tratamento de exceções de integridade do banco de dados.
+
+## ✅ Critérios de aceite
+
+- Produtos diferentes podem ser cadastrados com o mesmo nome;
+- O identificador único do produto permanece sendo o `id`;
+- O schema de resposta aceita produtos sem descrição;
+- O contrato de retorno do repositório local representa corretamente o valor devolvido pela criação de um item;
+- Os testes automatizados existentes continuam passando;
+- A documentação permanece coerente com o comportamento implementado.
 
 ---
 
