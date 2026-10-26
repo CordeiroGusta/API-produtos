@@ -13,7 +13,7 @@ def list_item_id(item_id: int) -> dict | None:
 
     return None
 
-def create_item(data: ItemRequest) -> bool:
+def create_item(data: ItemRequest) -> int:
     global _next_id
 
     item = {
