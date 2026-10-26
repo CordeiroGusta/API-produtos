@@ -3,7 +3,7 @@ from pydantic import BaseModel
 class ItemResponse(BaseModel):
     id: int 
     name: str 
-    description: str 
+    description: str | None
     family: str 
     value: float 
     quantity: int 
