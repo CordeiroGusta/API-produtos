@@ -7,7 +7,7 @@ class ItemModel(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, nullable=False, autoincrement=True, index=True)
 
-    name: Mapped[str] = mapped_column(String(30), nullable=False, unique=True)
+    name: Mapped[str] = mapped_column(String(30), nullable=False)
 
     description: Mapped[str | None] = mapped_column(String(60), nullable=True)
 
