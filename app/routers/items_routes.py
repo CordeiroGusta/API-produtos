@@ -1,4 +1,5 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, Depends, status
+from sqlalchemy.orm import Session
 from app.schemas.items_schemas import (
     ItemRequest, 
     ItemResponse, 
@@ -6,6 +7,7 @@ from app.schemas.items_schemas import (
     ItemCreatedResponse,
     ItemUpdatedResponse,
     MessageResponse)
+from app.database.db_connection import get_db
 from app.services import items_services
 
 
@@ -45,8 +47,8 @@ def get_item(item_id: int):
     status_code=status.HTTP_201_CREATED,
     response_model=ItemCreatedResponse
 )
-def create_item(data: ItemRequest):
-    item = items_services.create_item_service(data)
+def create_item(data: ItemRequest, db: Session = Depends(get_db)):
+    item = items_services.create_item_service(db, data)
 
     if item is None:
         raise HTTPException(
@@ -56,7 +58,7 @@ def create_item(data: ItemRequest):
 
     return {
         'message': 'Item criado com sucesso',
-        'item_id': item
+        'item_id': item.id
     }
 
 @router.patch(

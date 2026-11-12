@@ -1,7 +1,9 @@
+from sqlalchemy.orm import Session
+from app.repositories import items_repositories
 from app.schemas.items_schemas import ItemRequest, ItemUpdate
 from app.repositories_local.items_repositories import create_item, update_item, list_items_all, list_item_id, delete_item
 
-def create_item_service(data: ItemRequest):
+def create_item_service(db: Session, data: ItemRequest):
     if data.quantity <= 0 or data.value <= 0:
         return None
 
@@ -26,7 +28,7 @@ def create_item_service(data: ItemRequest):
     if len(data.family.strip()) > 20:
         return None 
 
-    return create_item(data)
+    return items_repositories.create_item(db, data)
 
 def update_item_service(item_id: int, data: ItemUpdate):
     if data.quantity is not None:
