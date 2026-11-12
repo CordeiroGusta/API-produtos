@@ -16,14 +16,14 @@ router = APIRouter(
     tags=['items']
 )
 
+# LIST ALL ITEMS
 @router.get(
     '/',
     status_code=status.HTTP_200_OK,
     response_model=list[ItemResponse]
 )
-def list_items():
-    items = items_services.list_items_service()
-
+def list_items(db: Session = Depends(get_db)):
+    items = items_services.list_items_service(db)
     return items
 
 @router.get(
