@@ -1,8 +1,9 @@
 from sqlalchemy.orm import Session
+from sqlalchemy import select
 from app.schemas.items_schemas import ItemRequest
 from app.models.items_models import ItemModel
 
-def create_item(db: Session, data: ItemRequest):
+def create_item(db: Session, data: ItemRequest) -> ItemModel:
     item = ItemModel(
         name=data.name,
         description=data.description,
@@ -14,3 +15,7 @@ def create_item(db: Session, data: ItemRequest):
     db.commit()
     db.refresh(item)
     return item
+
+def list_items(db: Session) -> list[ItemModel]:
+    items = db.scalars(select(ItemModel)).all()
+    return items
