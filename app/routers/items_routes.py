@@ -1,5 +1,5 @@
-from fastapi import APIRouter, HTTPException, Depends, status
 from sqlalchemy.orm import Session
+from fastapi import APIRouter, HTTPException, Depends, status
 from app.schemas.items_schemas import (
     ItemRequest, 
     ItemResponse, 
@@ -83,13 +83,14 @@ def update_item(item_id: int, data: ItemUpdate, db: Session = Depends(get_db)):
         'item': item
     }
 
+# DELETE ITEM
 @router.delete(
     '/{item_id}',
     status_code=status.HTTP_200_OK,
     response_model=MessageResponse
 )
-def delete_item(item_id: int):
-    item = items_services.delete_item_service(item_id)
+def delete_item(item_id: int, db: Session = Depends(get_db)):
+    item = items_services.delete_item_service(db, item_id)
 
     if item is None:
         raise HTTPException(

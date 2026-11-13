@@ -1,8 +1,7 @@
 from sqlalchemy.orm import Session
-from app.repositories import items_repositories
 from app.models.items_models import ItemModel
 from app.schemas.items_schemas import ItemRequest, ItemUpdate
-from app.repositories_local.items_repositories import create_item, update_item, list_items_all, list_item_id, delete_item
+from app.repositories import items_repositories
 
 def create_item_service(db: Session, data: ItemRequest) -> ItemModel:
     if data.quantity <= 0 or data.value <= 0:
@@ -72,8 +71,8 @@ def list_items_id_service(db: Session, id_item: int) -> ItemModel | None:
     item = items_repositories.list_item_by_id(id_item, db)
     return item
 
-def delete_item_service(id_item: int):
-    item = delete_item(id_item)
+def delete_item_service(db: Session, id_item: int):
+    item = items_repositories.delete_item(db, id_item)
     if item == True:
         return True
 
