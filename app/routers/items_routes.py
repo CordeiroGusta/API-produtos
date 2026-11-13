@@ -26,13 +26,14 @@ def list_items(db: Session = Depends(get_db)):
     items = items_services.list_items_service(db)
     return items
 
+# LIST A ITEM BY ID
 @router.get(
     '/{item_id}',
     status_code=status.HTTP_200_OK,
     response_model=ItemResponse
 )
-def get_item(item_id: int):
-    item = items_services.list_items_id_service(item_id)
+def get_item(item_id: int, db: Session = Depends(get_db)):
+    item = items_services.list_items_id_service(item_id, db)
 
     if item is None:
         raise HTTPException(

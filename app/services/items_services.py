@@ -68,8 +68,8 @@ def update_item_service(item_id: int, data: ItemUpdate):
 def list_items_service(db: Session) -> list[ItemModel]:
     return items_repositories.list_items(db)
 
-def list_items_id_service(id_item: int):
-    item = list_item_id(id_item)
+def list_items_id_service(db: Session, id_item: int) -> ItemModel | None:
+    item = items_repositories.list_item_by_id(id_item, db)
     return item
 
 def delete_item_service(id_item: int):
