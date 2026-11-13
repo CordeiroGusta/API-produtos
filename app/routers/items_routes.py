@@ -43,6 +43,7 @@ def get_item(item_id: int, db: Session = Depends(get_db)):
 
     return item
 
+# CREATE ITEM
 @router.post(
     '/',
     status_code=status.HTTP_201_CREATED,
@@ -62,13 +63,14 @@ def create_item(data: ItemRequest, db: Session = Depends(get_db)):
         'item_id': item.id
     }
 
+# UPDATE ITEM
 @router.patch(
     '/{item_id}',
     status_code=status.HTTP_200_OK,
     response_model=ItemUpdatedResponse
 )
-def update_item(item_id: int, data: ItemUpdate):
-    item = items_services.update_item_service(item_id, data)
+def update_item(item_id: int, data: ItemUpdate, db: Session = Depends(get_db)):
+    item = items_services.update_item_service(db, item_id, data)
 
     if item is None:
         raise HTTPException(

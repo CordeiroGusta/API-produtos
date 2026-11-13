@@ -31,7 +31,7 @@ def create_item_service(db: Session, data: ItemRequest) -> ItemModel:
 
     return items_repositories.create_item(db, data)
 
-def update_item_service(item_id: int, data: ItemUpdate):
+def update_item_service(db: Session, item_id: int, data: ItemUpdate) -> ItemModel:
     if data.quantity is not None:
         if data.quantity <= 0:
             return None
@@ -63,7 +63,7 @@ def update_item_service(item_id: int, data: ItemUpdate):
         if len(data.family.strip()) > 20:
             return None 
 
-    return update_item(item_id, data)
+    return items_repositories.update_item(db, item_id, data)
 
 def list_items_service(db: Session) -> list[ItemModel]:
     return items_repositories.list_items(db)
