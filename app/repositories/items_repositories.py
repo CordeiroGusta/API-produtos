@@ -19,3 +19,7 @@ def create_item(db: Session, data: ItemRequest) -> ItemModel:
 def list_items(db: Session) -> list[ItemModel]:
     items = db.scalars(select(ItemModel)).all()
     return items
+
+def list_item_by_id(db: Session, item_id: int) -> ItemModel | None:
+    item = db.scalar(select(ItemModel).where(ItemModel.id == item_id))
+    return item 
