@@ -39,3 +39,13 @@ def update_item(db: Session, item_id: int, data: ItemUpdate) -> ItemModel:
     db.refresh(item)
 
     return item
+
+def delete_item(db: Session, item_id: int) -> bool | None:
+    item = db.get(ItemModel, item_id)
+
+    if item is None:
+        return None
+
+    db.delete(item)
+    db.commit()
+    return True
